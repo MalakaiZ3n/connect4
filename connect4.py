@@ -49,7 +49,7 @@ while not game_over:
             drop_piece(board, row, col, 1)
 
             if winning_move(board, 1):
-                print("Player 1 Wins!!! Congrats")
+                print("Player 1 Wins!!! Congrats!!!")
                 game_over = True
 
 
