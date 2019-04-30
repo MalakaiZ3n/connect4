@@ -1,4 +1,5 @@
 import numpy as np
+import pygame
 
 ROW_COUNT = 6
 COLUMN_COUNT = 7
@@ -34,6 +35,18 @@ def winning_move(board, piece):
             if board[r][c] == piece and board[r+1][c] == piece and board[r+2][c] == piece and board[r+3][c] == piece:
                 return True
 
+    # Check for positively sloped diagonals
+    for c in range(COLUMN_COUNT-3):
+        for r in range(ROW_COUNT-3):
+            if board[r][c] == piece and board[r+1][c+1] == piece and board[r+2][c+2] == piece and board[r+3][c+3] == piece:
+                return True
+
+    # Check for negatively sloped diagonals
+    for c in range(COLUMN_COUNT-3):
+        for r in range(3, ROW_COUNT):
+            if board[r][c] == piece and board[r-1][c+1] == piece and board[r-2][c+2] == piece and board[r-3][c+3] == piece:
+                return True
+
 board = create_board()
 print_board(board)
 game_over = False
@@ -64,6 +77,8 @@ while not game_over:
             if winning_move(board, 2):
                 print("Player 2 Wins!!! Congrats!!!")
                 game_over = True
+
+                break
 
     print_board(board)
 
