@@ -52,6 +52,17 @@ print_board(board)
 game_over = False
 turn = 0
 
+pygame.init()
+
+SQUARESIZE = 100
+
+width = COLUMN_COUNT * SQUARESIZE
+height = (ROW_COUNT+1) * SQUARESIZE
+
+size = (width, height)
+
+screen = pygame.display.set_mode(size)
+
 while not game_over:
     # Ask for Player 1 Input
     if turn == 0:
@@ -77,8 +88,6 @@ while not game_over:
             if winning_move(board, 2):
                 print("Player 2 Wins!!! Congrats!!!")
                 game_over = True
-
-                break
 
     print_board(board)
 
